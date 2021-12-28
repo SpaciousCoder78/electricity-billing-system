@@ -1,0 +1,13 @@
+Here are some common household appliance wattages:
+
+No. Appliance                      Min    Max    Standby
+1.  32 InchLEDTV                    20W    60W    1W
+2.  Refrigerator                    100W   200W   N/A
+3.  Washing Machine                 500W   500W   1W
+4.  100W light bulb (Incandescent)  100W   100W   0W
+5.  Electric Pressure Cooker        1000W  1000W  N/A
+6.  Inverter Air conditioner        1300W  1800W  N/A
+7.  Iron                            1000W  1000W  N/A
+8.  Laptop Computer                 50W    100W   N/A
+9.  LED Light Bulb                  7W     10W    0W
+10.  Pedestal Fan                   50W    60W    N/A
