@@ -54,6 +54,8 @@ if ch=='y':
     c.execute("SELECT * FROM electricbill WHERE date=?", (datefinder,))
     print("Here is the data in the form (date,average power consumption(KWh), bill(in rupees):")
     print(c.fetchall())
+    
+input("Enter a key to continue")
 
 conn.commit()
 
