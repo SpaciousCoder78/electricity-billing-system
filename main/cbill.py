@@ -1,5 +1,5 @@
 class bill:
-    def __init__(self,date,tpower,price):
+    def __init__(self,date,pu,tamount):
         self.date=date
-        self.tpower=tpower
-        self.price=price
+        self.pu=pu
+        self.tamount=tamount
