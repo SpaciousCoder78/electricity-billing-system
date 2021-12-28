@@ -4,5 +4,10 @@ from cbill import bill
 conn=sqlite3.connect('electric_bill.db')
 
 c=conn.cursor()
-#whoever is doing, continue it from here
+
+c.execute("""CREATE TABLE electricbill (
+            date integer,
+            tpower integer,
+            price integer
+            )""")
 
