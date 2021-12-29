@@ -70,17 +70,18 @@ print("""Data registered
 
 conn.commit()
 
+ch = "y"
 ch=input("""Do you want to check the bill history? Press y to continue, press n to end: 
-
 """)
 
-if ch=='y':
-    datefinder=input("""Enter the date: 
+while ch == 'y':
+        datefinder=input("""Enter the date: 
     
-    """)
-    c.execute("SELECT * FROM electricbill WHERE date=?", (datefinder,))
-    print("""Here is the data from the date in the form (date,average power consumption(KWh), bill(in rupees):""")
-    print(c.fetchall())
+         """)
+        c.execute("SELECT * FROM electricbill WHERE date=?", (datefinder,))
+        print("""Here is the data from the date in the form (date,average power consumption(KWh), bill(in rupees):""")
+        print(c.fetchall())
+        ch = input("press y to continue to check records and n to end")
 
 input("Click any button to close this window")
 conn.commit()
