@@ -7,7 +7,7 @@ c=conn.cursor()
 
 
 
-question=input("do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time): ")
+question=input("do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time):  ")
 if question=='y':
   c.execute("""CREATE TABLE electricbill (
             date integer,
