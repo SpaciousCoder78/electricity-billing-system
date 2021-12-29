@@ -9,7 +9,7 @@ c=conn.cursor()
 print("""---------------------------------Electricity Billing System----------------------------------
 
 """)
-print("""Version: v1.0.1 Stable release
+print("""Version: v1.0.2 Stable release
 
 """)
 
