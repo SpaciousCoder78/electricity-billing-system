@@ -2,9 +2,10 @@
 import mysql
 import mysql.connector
 
-con=mysql.connector.connect(host='localhost',
+conn=mysql.connector.connect(host='localhost',
                             user="root",
                             password="root",
                             database="ELECTRICBILL")
-if con.is_connected():
+if conn.is_connected():
     print("Success")
+cursor=conn.connect()
