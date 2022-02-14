@@ -14,5 +14,20 @@ if conn.is_connected():
     
     """)
 cursor=conn.connect()
+cur=conn.cursor()
+question=input("""do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time): 
+""")
+if question=='y':
+  cur.execute("""CREATE TABLE electricbill (
+            date integer,
+            pu integer,
+            tamount integer
+            );""")
+  print("""Finished setting up the application
+  
+  """)
+else:
+   pass
+
 conn.commit()
 conn.close()
