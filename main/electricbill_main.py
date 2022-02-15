@@ -19,7 +19,7 @@ def setup(q):
    if question=='y':
      print("""Finished setting up the application
         """)
-     cur.execute("""CREATE TABLE electric (
+     cur.execute("""CREATE TABLE electricbill (
             date integer,
             pu integer,
             tamount integer
