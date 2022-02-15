@@ -1,11 +1,12 @@
 # electricity-billing-system
-A simple and efficient electricity billing system designed using SQLite and Python
+A simple and efficient electricity billing system designed using MySQL and Python
 
 # Pre-requisites:
 
 You need to have the following pre-requisites on your PC in order to run the application. Prerequisites are included in the installation folder,
 
 - Python 3.9
+- MySQL 8.0.28
 
 
 # Instructions to use:
