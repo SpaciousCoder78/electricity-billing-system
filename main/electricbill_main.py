@@ -24,6 +24,8 @@ def setup(q):
             pu integer,
             tamount integer
             );""")
+   else:
+    pass
       
 
 question=input("""do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time): 
