@@ -23,48 +23,54 @@ def setup(q):
    question=input("""do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time): 
    """)
    
-   if question=='y':
-     print("""Finished setting up the application
+   
+   print("""Finished setting up the application
         """)
-     cur.execute("""CREATE TABLE electricbill (
-            name varchar(30) PRIMARY KEY
+   cur.execute("""CREATE TABLE electricbill (
+            name varchar(30), 
             date integer,
             pu integer,
             tamount integer
             );""")
-   else:
-        pass
+   
+   
 
 
 
 
 def calc(x):
-   if menyoo==1:
-      pu=0.0
-      time=0
-      n=int(input("Enter no of appliances:"))
-      for i in range(n):
-         pr=float(input("Power rating of the appliance: "+" "+ str(i+1)+ ":"))
-         t=int(input("""Enter the usage time(in hours)
-      
+   pu=0.0
+   time=0
+   date=0000-00-00
+   n=int(input("Enter no of appliances:"))
+   name = input("enter your name")
+   for i in range(n):
+      pr=float(input("Power rating of the appliance: "+" "+ str(i+1)+ ":"))
+      t=int(input("""Enter the usage time(in hours)
+
          """))
-         pu+=(pr*t/1000)
-      if pu<=100:
-         amount= pu * 4.22
-      elif pu>100 and pu<=200:
-         amount=(100*4.22)+(pu-100)*5.02
-      else:
-         amount = (100 * 4.22) + (100 * 5.02) + (pu-200) * 5.87
-      print("""Fixed charge of rupees 40 and energy duty of 0.15 rupees per unit is applicable
-   
+      pu+=(pr*t/1000)
+   if pu<=100:
+      amount= pu * 4.22
+   elif pu>100 and pu<=200:
+      amount=(1004.22)+(pu-100)*5.02
+   else:
+      amount = (100 * 4.22) + (100 * 5.02) + (pu-200) * 5.87
+   print("""Fixed charge of rupees 40 and energy duty of 0.15 rupees per unit is applicable
+
       """)
-      tamount = amount + 40 + (pu*0.15)
-      print("""Total bill (in rupees): 
-    
-      """ + str((tamount)))
+   tamount = amount + 40 + (pu*0.15)
+   date=input("""Enter the date of the bill in the form dd-mm-yyyy: 
+
+      """)
+   
+   sql="INSERT INTO electricbill(name,date,pu,tamount) VALUES('{}','{}','{}','{}');".format(name,date,pu,tamount)
+   cur.execute(sql)
+   cur.execute("ALLOW INVALID DATES")
+   conn.commit()
 
 def comm_appliance(y):
-     if menyoo==3:
+     
         print("----------------------------Wattage of Common Appliances---------------------------")
         print ("""No. Appliance                      Min    Max    Standby
          1.  32 InchLEDTV                    20W    60W    1W
@@ -80,13 +86,11 @@ def comm_appliance(y):
     
 
 def softinfo(z):
-    if menyoo==6:
-        print("-----------------------------Software Information----------------------")
-        print("Version: 1.1")
-        print("Last Patch: 15/2/2022")
-        print("Python version: 3.9")
-    else:
-         pass
+      print("-----------------------------Software Information----------------------")
+      print("Version: 1.1")
+      print("Last Patch: 15/2/2022")
+      print("Python version: 3.9")
+
 
 
 
@@ -118,4 +122,3 @@ menu(menyoo)
 
 conn.commit()
 conn.close()
-
