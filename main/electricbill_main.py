@@ -5,7 +5,7 @@ import mysql.connector
 conn=mysql.connector.connect(host='localhost',
                             user="root",
                             password="root",
-                            database="ELECTRICBILL")
+                            database="electricbill")
 if conn.is_connected():
     print("""--------------------------------Electricity Billing System----------------------------------
     
@@ -19,7 +19,7 @@ cur=conn.cursor()
 
 
 
-def setup(q):
+def setup():
    question=input("""do you want to setup the application? Respond with 'y' to setup, 'n' to skip (only for first time): 
    """)
    
@@ -28,7 +28,7 @@ def setup(q):
         """)
    cur.execute("""CREATE TABLE electricbill (
             name varchar(30), 
-            date integer,
+            Date date,
             pu integer,
             tamount integer
             );""")
@@ -38,10 +38,9 @@ def setup(q):
 
 
 
-def calc(x):
+def calc():
    pu=0.0
    time=0
-   date=0000-00-00
    n=int(input("Enter no of appliances:"))
    name = input("enter your name")
    for i in range(n):
@@ -64,12 +63,33 @@ def calc(x):
 
       """)
    
-   sql="INSERT INTO electricbill(name,date,pu,tamount) VALUES('{}','{}','{}','{}');".format(name,date,pu,tamount)
+   
+   sql="INSERT INTO electricbill(name,date,pu,tamount) VALUES('{}','{}',{},{});".format(name,date,pu,tamount)
    cur.execute(sql)
-   cur.execute("ALLOW INVALID DATES")
    conn.commit()
 
-def comm_appliance(y):
+def find():
+    datefinder=input("""Enter the date: 
+    """)
+    namefinder=input("""ENter your name:
+    """)
+    
+    sql = "SELECT * FROM electricbill WHERE name = '{}' AND date = '{}' ".format(namefinder,datefinder)
+    cur.execute(sql)
+    print("""Here is the data from the date in the form (name,date,average power consumption(KWh), bill(in rupees):""")
+    print(cur.fetchall())
+    ch = input("press y to continue to check records and n to end")
+    if ch=='y':
+      find()
+
+def findall():
+   namefinder = input("Enter your name(first letter caps")
+   sql = "SELECT * FROM electricbill Where name = '{}'".format(namefinder)
+   cur.execute(sql)
+   print("Here are  all the bills listed with the name" + namefinder)
+   print(cur.fetchall())
+
+def comm_appliance():
      
         print("----------------------------Wattage of Common Appliances---------------------------")
         print ("""No. Appliance                      Min    Max    Standby
@@ -85,7 +105,7 @@ def comm_appliance(y):
          10.  Pedestal Fan                   50W    60W    N/A""")
     
 
-def softinfo(z):
+def softinfo():
       print("-----------------------------Software Information----------------------")
       print("Version: 1.1")
       print("Last Patch: 15/2/2022")
@@ -94,19 +114,21 @@ def softinfo(z):
 
 
 
-def menu(a):
+def menu(menyoo):
    if menyoo==1:
-      calc(menyoo)
+      calc()
    elif menyoo==2:
-      print(2)
+      find()
    elif menyoo==3:
-      comm_appliance(menyoo)
+      comm_appliance()
    elif menyoo==4:
-      setup(menyoo)
+      setup()
    elif menyoo==5:
       print(48)
    elif menyoo==6:
-      softinfo(menyoo)
+      softinfo()
+   elif menyoo==7:
+      findall()
    
 print("------------------------------Main Menu-----------------------------")
 print("1.Calculate a electricity bill")
@@ -115,9 +137,11 @@ print("3.View wattage of common appliances")
 print("4.Installation Setup for firsttimers")
 print("5.Exit the application")
 print("6.Software Information")
-print()
-menyoo=(int(input("Enter your choice(1-5):  ")))
-menu(menyoo)
+print("7.View all previous bills of a user")
+menyoo=1
+while menyoo in [1,7]:
+    menyoo=(int(input("Enter your choice(1-7):  ")))
+    menu(menyoo)
 
 
 conn.commit()
