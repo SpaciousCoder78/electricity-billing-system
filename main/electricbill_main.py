@@ -1,4 +1,3 @@
-from classes import bill
 import mysql
 import mysql.connector
 
@@ -107,8 +106,16 @@ def comm_appliance():
 def softinfo():
       print("-----------------------------Software Information----------------------")
       print("Version: 1.1")
-      print("Last Patch: 15/2/2022")
+      print("Latest Patch: 17/2/2022")
       print("Python version: 3.9")
+      print("MySQL Version: 8.0.28")
+      print("""------------------------v1.1 Patch Notes--------------------------------
+               - Upgraded the backend database to MySQL
+               - Added Menu Feature
+               - Added the feature to add your names to the bill
+               - Other quality of life improvements
+      
+      """)
 
 
 
