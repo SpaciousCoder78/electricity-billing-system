@@ -59,6 +59,7 @@ def calc():
 
       """)
    tamount = amount + 40 + (pu*0.15)
+   print("Your total bill is", tamount)
    date=input("""Enter the date of the bill in the form dd-mm-yyyy: 
 
       """)
@@ -78,9 +79,7 @@ def find():
     cur.execute(sql)
     print("""Here is the data from the date in the form (name,date,average power consumption(KWh), bill(in rupees):""")
     print(cur.fetchall())
-    ch = input("press y to continue to check records and n to end")
-    if ch=='y':
-      find()
+    
 
 def findall():
    namefinder = input("Enter your name(first letter caps")
