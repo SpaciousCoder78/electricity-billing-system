@@ -9,7 +9,7 @@ if conn.is_connected():
     print("""--------------------------------Electricity Billing System----------------------------------
     
     """)
-    print("""--------------------------------Version 1.1-------------------------------------------------
+    print("""--------------------------------Version 1.1.1-------------------------------------------------
     
     """)
 cursor=conn.connect()
@@ -40,8 +40,13 @@ def setup():
 def calc():
    pu=0.0
    time=0
-   n=int(input("Enter no of appliances:"))
-   name = input("enter your name")
+   name = input("""Enter your name:  
+   
+   """)
+   n=int(input("""Enter no of appliances: 
+   
+   """))
+   
    for i in range(n):
       pr=float(input("Power rating of the appliance: "+" "+ str(i+1)+ ":"))
       t=int(input("""Enter the usage time(in hours)
@@ -58,8 +63,8 @@ def calc():
 
       """)
    tamount = amount + 40 + (pu*0.15)
-   print("Your total bill is", tamount)
-   date=input("""Enter the date of the bill in the form dd-mm-yyyy: 
+   print("Your total bill is ", tamount)
+   date=input("""Enter the date of the bill in the form yyyy-mm-dd: 
 
       """)
    
@@ -71,7 +76,7 @@ def calc():
 def find():
     datefinder=input("""Enter the date: 
     """)
-    namefinder=input("""ENter your name:
+    namefinder=input("""Enter your name:
     """)
     
     sql = "SELECT * FROM electricbill WHERE name = '{}' AND date = '{}' ".format(namefinder,datefinder)
@@ -105,18 +110,14 @@ def comm_appliance():
 
 def softinfo():
       print("-----------------------------Software Information----------------------")
-      print("Version: 1.1")
+      print("Version: 1.1.1")
       print("Latest Patch: 17/2/2022")
       print("Python version: 3.9")
       print("MySQL Version: 8.0.28")
-      print("""------------------------v1.1 Patch Notes--------------------------------
-               - Upgraded the backend database to MySQL
-               - Added Menu Feature
-               - Added the feature to add your names to the bill
-               - Other quality of life improvements
+      print("""------------------------v1.1.1 Patch Notes--------------------------------
+               - Minor changes in the menu 
       
       """)
-
 
 
 
@@ -126,24 +127,27 @@ def menu(menyoo):
    elif menyoo==2:
       find()
    elif menyoo==3:
-      comm_appliance()
+      findall()
    elif menyoo==4:
-      setup()
+      comm_appliance()
    elif menyoo==5:
-      print(48)
+      setup()
    elif menyoo==6:
       softinfo()
    elif menyoo==7:
-      findall()
+      cur.close()
+   
+      
+   
    
 print("------------------------------Main Menu-----------------------------")
 print("1.Calculate a electricity bill")
 print("2.View previous bills")
-print("3.View wattage of common appliances")
-print("4.Installation Setup for firsttimers")
-print("5.Exit the application")
-print("6.Software Information")
-print("7.View all previous bills of a user")
+print("3.View all previous bills of a user")
+print("4.View wattage of common appliances")
+print("5.Installation Setup for firsttimers")
+print("6.View Software Information")
+print("7.Exit the application")
 menyoo=1
 while menyoo in [1,7]:
     menyoo=(int(input("Enter your choice(1-7):  ")))
