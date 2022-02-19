@@ -81,7 +81,7 @@ def find():
     
     sql = "SELECT * FROM electricbill WHERE name = '{}' AND monyear = '{}' ".format(namefinder,monthfinder)
     cur.execute(sql)
-    print("""Here is the data from the date in the form (name,date,average power consumption(KWh), bill(in rupees):""")
+    print("""Here is the data from the date in the form (name,month,average power consumption(KWh), bill(in rupees):""")
     print(cur.fetchall())
     
 
