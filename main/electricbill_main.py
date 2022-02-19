@@ -27,7 +27,7 @@ def setup():
         """)
    cur.execute("""CREATE TABLE electricbill (
             name varchar(30), 
-            Date date,
+            monyear varchar(30),
             pu integer,
             tamount integer
             );""")
@@ -56,7 +56,7 @@ def calc():
    if pu<=100:
       amount= pu * 4.22
    elif pu>100 and pu<=200:
-      amount=(1004.22)+(pu-100)*5.02
+      amount=(100*4.22)+(pu-100)*5.02
    else:
       amount = (100 * 4.22) + (100 * 5.02) + (pu-200) * 5.87
    print("""Fixed charge of rupees 40 and energy duty of 0.15 rupees per unit is applicable
@@ -64,22 +64,22 @@ def calc():
       """)
    tamount = amount + 40 + (pu*0.15)
    print("Your total bill is ", tamount)
-   date=input("""Enter the date of the bill in the form yyyy-mm-dd: 
+   monyear=input("""Enter the month and year of the bill in the form mm-yyyy: 
 
       """)
    
    
-   sql="INSERT INTO electricbill(name,date,pu,tamount) VALUES('{}','{}',{},{});".format(name,date,pu,tamount)
+   sql="INSERT INTO electricbill(name,monyear,pu,tamount) VALUES('{}','{}',{},{});".format(name,monyear,pu,tamount)
    cur.execute(sql)
    conn.commit()
 
 def find():
-    datefinder=input("""Enter the date: 
+    monthfinder=input("""Enter the month and year in the form mm-yyyy
     """)
     namefinder=input("""Enter your name:
     """)
     
-    sql = "SELECT * FROM electricbill WHERE name = '{}' AND date = '{}' ".format(namefinder,datefinder)
+    sql = "SELECT * FROM electricbill WHERE name = '{}' AND monyear = '{}' ".format(namefinder,monthfinder)
     cur.execute(sql)
     print("""Here is the data from the date in the form (name,date,average power consumption(KWh), bill(in rupees):""")
     print(cur.fetchall())
@@ -115,7 +115,8 @@ def softinfo():
       print("Python version: 3.9")
       print("MySQL Version: 8.0.28")
       print("""------------------------v1.1.1 Patch Notes--------------------------------
-               - Minor changes in the menu 
+               - Minor changes in the menu
+               - Added monthly billing instead of billing by date
       
       """)
 
